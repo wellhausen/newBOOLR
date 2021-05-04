@@ -1,8 +1,9 @@
 # electron-quick-start
 
 **Clone and run for a quick way to see Electron in action.**
+Using a minimal Electron application, we've ported the original BOOLR app to account for dependency updates.
 
-This is a minimal Electron application based on the [Quick Start Guide](https://electronjs.org/docs/tutorial/quick-start) within the Electron documentation.
+This is the cloned app: a minimal Electron application based on the [Quick Start Guide](https://electronjs.org/docs/tutorial/quick-start) within the Electron documentation.
 
 **Use this app along with the [Electron API Demos](https://electronjs.org/#get-started) app for API code examples to help you get started.**
 
@@ -20,9 +21,9 @@ To clone and run this repository you'll need [Git](https://git-scm.com) and [Nod
 
 ```bash
 # Clone this repository
-git clone https://github.com/electron/electron-quick-start
+https://github.com/wellhausen/newBOOLR.git
 # Go into the repository
-cd electron-quick-start
+cd newBOOLR
 # Install dependencies
 npm install
 # Run the app
