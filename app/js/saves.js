@@ -1,5 +1,5 @@
 const fs = require("fs");
-const savesFolder = __dirname + "/../saves/";
+const savesFolder = __dirname + "/app/saves/";
 
 let saves = [];
 
