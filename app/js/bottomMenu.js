@@ -1,13 +1,10 @@
 const menu = document.getElementById("menu");
 menu.style.opacity = "1";
-menu.style.border = "red";
 menu.onmousedown = () => setTimeout(menu.hide.bind(menu));
 
 menu.show = function () {
   this.style.opacity = 1;
-  //this.style.bottom = 30;
-  this.style.bottom = 1;
-  console.log("show menu");
+  this.style.bottom = 30;
 
   document.querySelector("#menuopen .container").style.transform =
     "rotateZ(180deg)";
