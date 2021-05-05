@@ -51,27 +51,6 @@
                 <h1>Create new board</h1>
                 <input id="boardname" placeholder="Board name">
                 <div id="filename">This board will be saved as new-board.board</div>
-
-                <script>
-                    (function() {
-                        const input = document.querySelector(".new-board #boardname");
-                        const filename = document.querySelector(".new-board #filename");
-                        input.onfocus = () => filename.style.opacity = 1;
-                        input.onblur = () => filename.style.opacity = 0;
-
-                        input.onkeydown = () => {setTimeout(
-                            () => {
-                                const name = createFileName(input.value);
-
-                                if(name != input.value + ".board") {
-                                    filename.innerHTML = "This board will be saved as " + name;
-                                    filename.style.opacity = 1;
-                                } else filename.style.opacity = 0;
-                            }
-                        )};
-                    })();
-                </script>
-
                 <br><br>
                 <p style="color: rgba(0,0,0,.5)">Hint: hold the Ctrl-key while clicking the NEW BOARD button to go sandbox mode without creating a save file</p>
                 <button onclick="this.parentNode.hide(); this.parentNode.querySelector('input').value = ''">Cancel</button>
@@ -299,25 +278,7 @@
             <li onmousedown="tutorial.show()"><i class="material-icons">help</i>Open tutorial<span>F1</span></li>
             <li onmousedown="mainMenu.show();"><i class="material-icons" >exit_to_app</i>Quit</li>
 
-            <script>
-                const menu = document.getElementById("menu");
-                menu.style.opacity = "0";
-                menu.onmousedown = () => setTimeout(menu.hide.bind(menu));
 
-                menu.show = function() {
-                    this.style.opacity = 1;
-                    this.style.bottom = 30;
-
-                    document.querySelector("#menuopen .container").style.transform = "rotateZ(180deg)";
-                }
-
-                menu.hide = function() {
-                    this.style.opacity = 0;
-                    this.style.bottom = -this.clientHeight - 100;
-
-                    document.querySelector("#menuopen .container").style.transform = "rotateZ(0deg)";
-                }
-            </script>
         </ul>
 
         <!-- Debug info -->
@@ -435,6 +396,8 @@
         </div>
 
         <!-- Scripts -->
+        <script src="app/js/newBoard.js"></script>
+        <script src="app/js/bottomMenu.js"></script>
         <script src="app/js/components.js"></script>
         <script src="app/js/localStorage2.js"></script>
         <script src="app/js/canvas.js"></script>
