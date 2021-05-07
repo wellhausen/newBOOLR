@@ -53,8 +53,8 @@ const sub = document.querySelectorAll(".main-menu .sub");
 
 // Apply show and hide methods to sub menu's
 for(let i of sub) {
-    i.show = function() {
-        i.onopen && i.onopen();
+    i.show = async function() {
+        i.onopen && await i.onopen();
 
         this.style.display = "block";
         const height = Math.min(innerHeight - this.getBoundingClientRect().bottom, 0) - 100;
@@ -112,11 +112,11 @@ newBoardMenu.onopen = function() {
     setTimeout(() => this.querySelector("#boardname").focus(), 10);
 }
 
-openBoardMenu.onopen = function() {
+openBoardMenu.onopen = async function() {
     const list = document.querySelector(".open-board ul");
 
     list.innerHTML = "";
-    readSaveFiles();
+    await readSaveFiles();
 
     if(saves.length < 1) {
         const li = document.createElement("li");
@@ -141,8 +141,12 @@ openBoardMenu.onopen = function() {
         removeBtn.onclick = function(e) {
             dialog.confirm(
                 "Are you sure you want to delete " + this.parentNode.save.name + "?",
-                () => {
-                    fs.unlink(savesFolder + save.fileName, (err) => console.log(err));
+                async () => {
+                    try {
+                        await window.ipc.invoke('remove-board', save.fileName);
+                    } catch (e) {
+                        console.error(e);
+                    }
                     const index = saves.indexOf(save);
                     if(index > -1) saves.splice(index,1);
                     openBoardMenu.onopen();
@@ -220,4 +224,3 @@ settingsMenu.onopen = function() {
         settings.showComponentUpdates = showComponentUpdatesOption.checked;
     }
 }
-

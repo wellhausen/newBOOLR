@@ -21,15 +21,6 @@
 
   </head>
   <body>
-    <!-- If this file is opened by something else than Electron, stop loading -->
-    <script>
-      if(!(window && window.process && window.process.type)) {
-          console.log("window.process", window.process);
-          document.write("Open BOOLR by opening the BOOLR executable.");
-          document.body.style.background = "white";
-          window.stop();
-      }
-  </script>
   <script src="app/js/saves.js"></script>
   <script src="app/js/savedCustomComponents.js"></script>
   <!-- Preload canvas fonts -->
@@ -62,9 +53,9 @@
             <div class="sub open-board">
                 <h1>Open board</h1>
                 <ul></ul>
-                <p>To open boards, paste a .board file in the saves folder</p>
+                <!-- p>To open boards, paste a .board file in the saves folder</p>
                 <button onclick="require('child_process').exec('xdg-open ' + __dirname + '/../saves')">Open saves folder</button>
-                <button onclick="dialog.connectToServer()">Connect to a BOOLR server</button>
+                <button onclick="dialog.connectToServer()">Connect to a BOOLR server</button -->
             </div>
 
             <button onclick="settingsMenu.toggle()"><i class="material-icons">settings</i>SETTINGS</button>

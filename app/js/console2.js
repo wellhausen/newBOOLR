@@ -221,7 +221,7 @@ function inputHandler(input) {
             boolrConsole.help();
             break;
         case "openDevTools":
-            require('electron').remote.getCurrentWindow().webContents.openDevTools();
+            window.ipc.openDevTools();
             return "Opened Developer Tools";
             break;
         default:
@@ -229,4 +229,3 @@ function inputHandler(input) {
             break;
     }
 }
-
