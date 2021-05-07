@@ -4,7 +4,7 @@ menu.onmousedown = () => setTimeout(menu.hide.bind(menu));
 
 menu.show = function () {
   this.style.opacity = 1;
-  this.style.bottom = 30;
+  this.style.bottom = `30px`;
 
   document.querySelector("#menuopen .container").style.transform =
     "rotateZ(180deg)";
@@ -12,7 +12,7 @@ menu.show = function () {
 
 menu.hide = function () {
   this.style.opacity = 0;
-  this.style.bottom = -this.clientHeight - 100;
+  this.style.bottom = `${-this.clientHeight - 100}px`;
 
   document.querySelector("#menuopen .container").style.transform =
     "rotateZ(0deg)";
