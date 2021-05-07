@@ -60,12 +60,13 @@ for(let i = 0; i < document.getElementsByClassName("slot").length; ++i) {
         this.hover = true;
         const toolbartip = document.getElementById("toolbartip");
 
-        if(toolbartip.style.display == "block") {
+        if(toolbartip.style.display === "block") {
             toolbartip.innerHTML = this.getAttribute("tooltip");
             if(i > 0 && i < 5) {
                 toolbartip.innerHTML += "<br><span style='font-size: 10px; color: #555'>Right click for details</span>";
             }
-            toolbartip.style.left = this.getBoundingClientRect().left + this.clientWidth / 2 - toolbartip.clientWidth / 2;
+            toolbartip.style.left = `${this.getBoundingClientRect().left + this.clientWidth / 2 - toolbartip.clientWidth / 2}px`;
+            console.log(toolbartip.style.left);
         } else {
             toolbartip.style.display = "block";
             toolbartip.innerHTML = this.getAttribute("tooltip")
@@ -76,7 +77,7 @@ for(let i = 0; i < document.getElementsByClassName("slot").length; ++i) {
                 toolbartip.style.opacity = 1;
                 toolbartip.style.transform = "translateY(20px)";
             }, 1);
-            toolbartip.style.left = this.getBoundingClientRect().left + this.clientWidth / 2 - toolbartip.clientWidth / 2;
+            toolbartip.style.left = `${this.getBoundingClientRect().left + this.clientWidth / 2 - toolbartip.clientWidth / 2}px`;
             setTimeout(() => toolbartip.style.transition = "transform .2s, opacity .2s, left .2s", 100);
         }
     }
