@@ -66,7 +66,6 @@ for(let i = 0; i < document.getElementsByClassName("slot").length; ++i) {
                 toolbartip.innerHTML += "<br><span style='font-size: 10px; color: #555'>Right click for details</span>";
             }
             toolbartip.style.left = `${this.getBoundingClientRect().left + this.clientWidth / 2 - toolbartip.clientWidth / 2}px`;
-            console.log(toolbartip.style.left);
         } else {
             toolbartip.style.display = "block";
             toolbartip.innerHTML = this.getAttribute("tooltip")
