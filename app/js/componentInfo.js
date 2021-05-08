@@ -15,8 +15,8 @@ componentInfo.show = function(component,pos) {
         }
     }
 
-    this.style.top = pos.y - this.clientHeight - zoom / 2;
-    this.style.left = pos.x - this.clientWidth / 2;
+    this.style.top = `${pos.y - this.clientHeight - zoom / 2}px`;
+    this.style.left = `${pos.x - this.clientWidth / 2}px`;
 
     setTimeout(() => {
         this.style.display = "block";
