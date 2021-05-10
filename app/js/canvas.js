@@ -89,11 +89,11 @@ function draw() {
     // Draw hover balloon
     if(hoverBalloon.display) {
         if(Array.isArray(mouse.hover.pos)) {
-            hoverBalloon.style.top = mouse.screen.y - hoverBalloon.clientHeight - 35;
-            hoverBalloon.style.left = mouse.screen.x - hoverBalloon.clientWidth / 2;
+            hoverBalloon.style.top = `${mouse.screen.y - hoverBalloon.clientHeight - 35}px`;
+            hoverBalloon.style.left = `${mouse.screen.x - hoverBalloon.clientWidth / 2}px`;
         } else {
-            hoverBalloon.style.top = (offset.y - mouse.hover.pos.y - .5) * zoom - hoverBalloon.clientHeight - 35;
-            hoverBalloon.style.left = (mouse.hover.pos.x - offset.x + mouse.hover.width / 2 - .5) * zoom - hoverBalloon.clientWidth / 2;
+            hoverBalloon.style.top = `${(offset.y - mouse.hover.pos.y - .5) * zoom - hoverBalloon.clientHeight - 35}px`;
+            hoverBalloon.style.left = `${(mouse.hover.pos.x - offset.x + mouse.hover.width / 2 - .5) * zoom - hoverBalloon.clientWidth / 2}px`;
         }
     }
 
@@ -121,15 +121,15 @@ function draw() {
     // Draw context menu
     if(document.getElementById("contextMenu").style.display != "none") {
         const contextMenu = document.getElementById("contextMenu");
-        contextMenu.style.left = (contextMenu.x - offset.x) * zoom;
-        contextMenu.style.top = -(contextMenu.y - offset.y) * zoom;
+        contextMenu.style.left = `${(contextMenu.x - offset.x) * zoom}px`;
+        contextMenu.style.top = `${-(contextMenu.y - offset.y) * zoom}px`;
     }
 
     // Draw waypoints menu
     if(document.getElementById("waypointsMenu").style.display != "none") {
         const waypointsMenu = document.getElementById("waypointsMenu");
-        waypointsMenu.style.left = (waypointsMenu.x - offset.x) * zoom;
-        waypointsMenu.style.top = -(waypointsMenu.y - offset.y) * zoom;
+        waypointsMenu.style.left = `${(waypointsMenu.x - offset.x) * zoom}px`;
+        waypointsMenu.style.top = `${-(waypointsMenu.y - offset.y) * zoom}px`;
     }
 
     // Scroll animatie
