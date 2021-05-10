@@ -5,8 +5,8 @@
   input.onblur = () => (filename.style.opacity = 0);
 
   input.onkeydown = () => {
-    setTimeout(() => {
-      const name = createFileName(input.value);
+    setTimeout(async () => {
+      const name = await createFileName(input.value);
 
       if (name != input.value + ".board") {
         filename.innerHTML = "This board will be saved as " + name;

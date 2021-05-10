@@ -107,25 +107,19 @@ dialog.editBoard = function(save) {
     dialog.container.appendChild(document.createTextNode(".board"));
 
     dialog.addOption("Cancel");
-    dialog.addOption("OK",  () => {
+    dialog.addOption("OK", async () => {
         if(boardName.value != save.name && boardName.value.length > 0 && boardName.value.length < 100) {
             save.name = boardName.value;
 
-            const content = JSON.parse(fs.readFileSync(savesFolder + save.fileName));
+            const data = await window.ipc.invoke('read-board', save.fileName);
+            const content = JSON.parse(data);
             content.name = boardName.value;
-            fs.writeFile(
-                savesFolder + save.fileName,
-                JSON.stringify(content),
-                "utf-8"
-            );
+            await window.ipc.invoke('write-board', save.fileName, JSON.stringify(content));
         }
 
         if(fileName.value + ".board" != save.fileName) {
-            const newFileName = createFileName(fileName.value);
-            fs.rename(
-                savesFolder + save.fileName,
-                savesFolder + newFileName
-            );
+            const newFileName = await createFileName(fileName.value);
+            await window.ipc.invoke('rename-board', save.fileName, newFileName);
             save.fileName = newFileName;
         }
 

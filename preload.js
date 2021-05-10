@@ -10,3 +10,14 @@ window.addEventListener('DOMContentLoaded', () => {
     replaceText(`${type}-version`, process.versions[type])
   }
 })
+
+const { contextBridge, ipcRenderer } = require("electron");
+const ipc = {
+  openDevTools: function () { ipcRenderer.send('open-dev-tools'); },
+};
+for (let method of ['on', 'once', 'removeListener', 'removeAllListeners', 'send', 'invoke']) {
+  ipc[method] = function(...args) {
+    return ipcRenderer[method](...args);
+  };
+}
+contextBridge.exposeInMainWorld("ipc", ipc);

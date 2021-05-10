@@ -7,21 +7,12 @@ function saveCustomComponent(component) {
   toolbar.message("Saved component " + component.name);
 }
 
-function saveCustomComponents() {
+async function saveCustomComponents() {
   const stringified = stringify(savedCustomComponents);
-  fs.writeFileSync(
-    //__dirname + "/../data/customcomponents.json",
-    __dirname + "/app/data/customcomponents.json",
-    stringified,
-    "utf-8"
-  );
+  await window.ipc.invoke('save-custom-components', stringified);
 }
 
-function getCustomComponents() {
-  const data = fs.readFileSync(
-    __dirname + "/app/data/customcomponents.json",
-    "utf-8"
-  );
-
+async function getCustomComponents() {
+  const data = await window.ipc.invoke('read-custom-components');
   savedCustomComponents = parse(data).components;
 }
