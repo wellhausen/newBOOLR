@@ -2,50 +2,44 @@ let clipboard = {};
 clipboard.components = [];
 clipboard.wires = [];
 
-clipboard.copy = function(components = [], wires = [], selection) {
-    const clone = cloneSelection(components,wires);
-    clipboard.components = clone.components;
-    clipboard.wires = clone.wires;
-    if(selection) {
-        clipboard.selection = Object.assign({},selection);
-    } else {
-        delete clipboard.selection;
-    }
-}
+clipboard.copy = function (components = [], wires = [], selection) {
+  const clone = cloneSelection(components, wires);
+  clipboard.components = clone.components;
+  clipboard.wires = clone.wires;
+  if (selection) {
+    clipboard.selection = Object.assign({}, selection);
+  } else {
+    delete clipboard.selection;
+  }
+};
 
-clipboard.paste = function(x, y, undoable = false) {
-    if(this.selection) {
-        const dx = Math.round(x - this.selection.x) || 0;
-        const dy = Math.round(y - this.selection.y) || 0;
+clipboard.paste = function (x, y, undoable = false) {
+  if (this.selection) {
+    const dx = Math.round(x - this.selection.x) || 0;
+    const dy = Math.round(y - this.selection.y) || 0;
 
-        const clone = cloneSelection(this.components,this.wires,dx,dy);
-        addSelection(
-            clone.components,
-            clone.wires,
-            this.selection,
-            x, y,
-            true
-        )
-        // components.push(...clone.components);
-        // wires.push(...clone.wires);
-        //
-        // selecting = Object.assign({},this.selection);
-        // selecting.x = x;
-        // selecting.y = y;
-        // selecting.components = [...clone.components];
-        // selecting.wires = [...clone.wires];
-        //
-        // contextMenu.show(
-        //     selecting.x + selecting.w,
-        //     selecting.y + selecting.h
-        // );
-    } else if(this.components.length > 0) {
-        const clone = cloneComponent(this.components[0])
-        clone.pos.x = x;
-        clone.pos.y = y;
-        components.push(clone);
-    }
-}
+    const clone = cloneSelection(this.components, this.wires, dx, dy);
+    addSelection(clone.components, clone.wires, this.selection, x, y, true);
+    // components.push(...clone.components);
+    // wires.push(...clone.wires);
+    //
+    // selecting = Object.assign({},this.selection);
+    // selecting.x = x;
+    // selecting.y = y;
+    // selecting.components = [...clone.components];
+    // selecting.wires = [...clone.wires];
+    //
+    // contextMenu.show(
+    //     selecting.x + selecting.w,
+    //     selecting.y + selecting.h
+    // );
+  } else if (this.components.length > 0) {
+    const clone = cloneComponent(this.components[0]);
+    clone.pos.x = x;
+    clone.pos.y = y;
+    components.push(clone);
+  }
+};
 
 // clipboard.paste = function(x,y) {
 //     if(this.components.length == 0 && this.wires.length == 0) {

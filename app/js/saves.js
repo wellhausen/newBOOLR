@@ -4,7 +4,7 @@ let openedSaveFile;
 
 // Read save files from "saves" folder
 async function readSaveFiles() {
-  saves = await window.ipc.invoke('get-saved-boards-list');
+  saves = await window.ipc.invoke("get-saved-boards-list");
 }
 
 function clearBoard() {
@@ -38,7 +38,7 @@ function clearBoard() {
 }
 
 async function openSaveFile(save) {
-  const content = await window.ipc.invoke('read-board', save.fileName);
+  const content = await window.ipc.invoke("read-board", save.fileName);
 
   const saveFile = JSON.parse(content);
   if (!Array.isArray(saveFile)) {
@@ -67,7 +67,7 @@ async function openSaveFile(save) {
 }
 
 async function createFileName(name) {
-  return await window.ipc.invoke('check-board-name', name);
+  return await window.ipc.invoke("check-board-name", name);
 }
 
 async function createSaveFile(name) {
@@ -85,7 +85,11 @@ async function createSaveFile(name) {
     data: stringify(components, wires),
   };
 
-  const fileInfo = await window.ipc.invoke('create-board-file', fileName, JSON.stringify(save));
+  const fileInfo = await window.ipc.invoke(
+    "create-board-file",
+    fileName,
+    JSON.stringify(save)
+  );
   fileInfo.name = name;
 
   saves.push(fileInfo);
@@ -110,7 +114,11 @@ function save(msg = false) {
     };
 
     try {
-      await window.ipc.invoke('write-board', openedSaveFile.fileName, JSON.stringify(save));
+      await window.ipc.invoke(
+        "write-board",
+        openedSaveFile.fileName,
+        JSON.stringify(save)
+      );
       if (msg) {
         toolbar.message("Saved changes to " + openedSaveFile.fileName);
       }

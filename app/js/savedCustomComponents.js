@@ -9,10 +9,10 @@ function saveCustomComponent(component) {
 
 async function saveCustomComponents() {
   const stringified = stringify(savedCustomComponents);
-  await window.ipc.invoke('save-custom-components', stringified);
+  await window.ipc.invoke("save-custom-components", stringified);
 }
 
 async function getCustomComponents() {
-  const data = await window.ipc.invoke('read-custom-components');
+  const data = await window.ipc.invoke("read-custom-components");
   savedCustomComponents = parse(data).components;
 }

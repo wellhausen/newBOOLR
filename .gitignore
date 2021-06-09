@@ -3,3 +3,5 @@ node_modules
 app/saves/*
 
 app/saves/test-board.board
+
+.vscode/launch.json
