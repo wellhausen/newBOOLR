@@ -18,7 +18,7 @@ dialog.show = function () {
     dialog.focus();
     dialog.style.opacity = 1;
     dialog.style.transform = "scale(1)";
-    dialog.style.top = "16%";
+    dialog.style.top = "0";
   }, 10);
 };
 
