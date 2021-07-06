@@ -1582,6 +1582,18 @@ class Component {
 
     this.input = [];
     this.output = [];
+    this.editing = false;
+  }
+
+  addHighlight(duration=4000) {
+    this.outline = 1;
+    this.editing = true;
+    setTimeout(() => (this.outline = 0), duration);
+  }
+
+  removeHighlight(){
+    this.outline = 0;
+    this.editing = false;
   }
 
   update() {
