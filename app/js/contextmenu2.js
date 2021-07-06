@@ -1,5 +1,15 @@
 const contextMenu = document.getElementById("contextMenu");
 
+const editStatus = {
+    getComponent(){
+        return findComponentByPos(...contextMenu.getPos());
+    },
+    setComponent(cc){
+        this.currentComponent = cc;
+    }
+};
+
+  
 contextMenu.show = function(
     x = mouse.screen.x / zoom + offset.x,
     y = -mouse.screen.y / zoom + offset.y
@@ -19,17 +29,12 @@ contextMenu.show = function(
             contextMenu.appendChild(this.options[i]);
         }
     }
+    
+    let c = editStatus.getComponent();
 
-    // Show the context menu on the screen
-    // this.style.display = "block";
-    // this.x = Math.min(
-    //     x,
-    //     c.width / zoom + offset.x - (this.clientWidth + 1) / zoom
-    // );
-    // this.y = Math.max(
-    //     y - 1 / zoom,
-    //     -c.height / zoom + offset.y + this.clientHeight / zoom
-    // );
+    if (c){
+        c.addHighlight();
+    }
 
     setTimeout(() => {
         contextMenu.style.opacity = 1;
@@ -39,6 +44,7 @@ contextMenu.show = function(
 
 contextMenu.hide = function() {
     this.style.opacity = 0;
+
     setTimeout(
         () => contextMenu.style.display = "none",
         200
